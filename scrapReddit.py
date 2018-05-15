@@ -10,7 +10,7 @@ print(reddit.user.me())  # confirmation
 subreddit = reddit.subreddit('leagueoflegends')
 print(subreddit.display_name)
 
-top_subreddit = subreddit.new(limit = 5)
+top_subreddit = subreddit.hot(limit = 50)
 print(top_subreddit)
 
 topics_dict = { "title":[], \
