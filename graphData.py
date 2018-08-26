@@ -3,6 +3,7 @@ import csv
 from collections import defaultdict
 import collections
 
+
 columns = defaultdict(list)
 
 with open('data.csv', 'r') as f:
@@ -12,7 +13,7 @@ with open('data.csv', 'r') as f:
             columns[i].append(row[i])
     columns = dict(columns)
 
-print(columns)
+# print(columns)
 
 allWords = []
 
@@ -25,9 +26,9 @@ for comment in columns[1]:
 allWords = map(str.lower, allWords)
 
 counter = collections.Counter(allWords)
-print(counter)
-print(counter.keys())
-print(counter.values())
+# print(counter)
+# print(counter.keys())
+# print(counter.values())
 
 x = list(counter.keys())[0:10]
 y = list(counter.values())[0:10]

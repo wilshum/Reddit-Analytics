@@ -9,7 +9,8 @@ import datetime as dt
 print(reddit.user.me())  # confirmation
 
 subreddit = reddit.subreddit('leagueoflegends')
-print(subreddit.display_name)
+# print(subreddit.display_name)
+print("scrapped Reddit")
 
 hot_subreddit = subreddit.top(limit=1)
 

@@ -1,3 +1,4 @@
 credential.py
 .idea/
 result.csv
+__pycache__/
