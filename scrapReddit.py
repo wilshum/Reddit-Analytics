@@ -1,40 +1,42 @@
 ##! python3
 
-from credential import reddit
+from credentials import reddit
 import praw
 from praw.models import MoreComments
 import pandas as pd
 import datetime as dt
 
-print(reddit.user.me())  # confirmation
+print(reddit.read_only)  # confirmation
 
-subreddit = reddit.subreddit('leagueoflegends')
-# print(subreddit.display_name)
-print("scrapped Reddit")
 
-hot_subreddit = subreddit.top(limit=1)
+def scrap_func():
+    subreddit = reddit.subreddit('leagueoflegends')
+    # print(subreddit.display_name)
+    print("scrapped Reddit")
 
-topics_dict = {
-    "likes": [], \
-    "popular": []}
+    hot_subreddit = subreddit.top(limit=1)
 
-for submission in hot_subreddit:
-    top_level_comments = list(submission.comments)
-    for top_level_comment in top_level_comments:
-        if isinstance(top_level_comment, MoreComments):
-            continue
-        topics_dict["popular"].append(top_level_comment.body)
-        topics_dict["likes"].append(top_level_comment.score)
-    # all_comments = submission.comments.list()
-    # for comment in all_comments:
-    #     topics_dict["all"].append(comment.body)
+    topics_dict = {
+        "likes": [], \
+        "popular": []}
 
-topics_data = pd.DataFrame(data=topics_dict)
+    for submission in hot_subreddit:
+        top_level_comments = list(submission.comments)
+        for top_level_comment in top_level_comments:
+            if isinstance(top_level_comment, MoreComments):
+                continue
+            topics_dict["popular"].append(top_level_comment.body)
+            topics_dict["likes"].append(top_level_comment.score)
+        # all_comments = submission.comments.list()
+        # for comment in all_comments:
+        #     topics_dict["all"].append(comment.body)
 
-# def get_date(created):
-#     return dt.datetime.fromtimestamp(created)
-#
-# timestamp = topics_data["created"].apply(get_date)
-# topics_data = topics_data.assign(timestamp = timestamp)
+    topics_data = pd.DataFrame(data=topics_dict)
 
-topics_data.to_csv('data.csv', index=False)
+    # def get_date(created):
+    #     return dt.datetime.fromtimestamp(created)
+    #
+    # timestamp = topics_data["created"].apply(get_date)
+    # topics_data = topics_data.assign(timestamp = timestamp)
+
+    topics_data.to_csv('data.csv', index=False)

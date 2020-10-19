@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<h1>Reddit Analytics</h1>
+{% endblock %}
+
+
+
+{% block body %}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type=text/javascript>
+        $(function() {
+          $('a#scrapReddit').on('click', function(e) {
+            e.preventDefault()
+            $.getJSON('/scrapReddit',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+</script>
+
+
+<div class='container'>
+    <h2>ScrapReddit</h2>
+        <form>
+            <a href=# id=scrapReddit><button class='btn btn-default'>Test</button></a>
+        </form>
+</div>
+
+
+<script type=text/javascript>
+        $(function() {
+          $('a#graphData').on('click', function(e) {
+            e.preventDefault()
+            $.getJSON('/graphData',
+                function(data) {
+              //do nothing
+            });
+            return false;
+          });
+        });
+</script>
+
+
+<div class='container'>
+    <h2>GraphData</h2>
+        <form>
+            <a href=# id=graphData><button class='btn btn-default'>Test</button></a>
+        </form>
+</div>
+
+
+{% endblock %}
