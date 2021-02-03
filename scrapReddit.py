@@ -10,7 +10,7 @@ print(reddit.read_only)  # confirmation
 
 
 def scrap_func():
-    subreddit = reddit.subreddit('leagueoflegends')
+    subreddit = reddit.subreddit('wallstreetbets')
     # print(subreddit.display_name)
     print("scrapped Reddit")
 

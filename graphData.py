@@ -8,7 +8,7 @@ def graph_func():
 
     columns = defaultdict(list)
 
-    with open('data.csv', 'r') as f:
+    with open('data.csv', 'r', encoding='utf8') as f:
         reader = csv.reader(f, delimiter=',')
         for row in reader:
             for i in range(len(row)):
