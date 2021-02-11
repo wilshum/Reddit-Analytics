@@ -13,9 +13,9 @@
           $('a#scrapReddit').on('click', function(e) {
             e.preventDefault()
             $.getJSON('/scrapReddit',
-                function(data) {
-              //do nothing
-            });
+              function(data) {
+                console.log(data);
+              });
             return false;
           });
         });
@@ -34,9 +34,9 @@
      <legend>Settings</legend>
      <p>
         <select id = "graphTimeRangeSelection">
-          <option value = "1">Past Day</option>
-          <option value = "2">Past 7 Days</option>
-          <option value = "3">Past 30 Days</option>
+          <option value = "1D">Past Day</option>
+          <option value = "7D">Past 7 Days</option>
+          <option value = "30D">Past 30 Days</option>
         </select>
         <input type="text" id="graphSubredditNameInput" placeholder="Subreddit Name">
         <label for="graphKeywordsInput">Comment Keywords</label>
@@ -66,6 +66,8 @@
             <a href=# id=graphData><button class='btn btn-default'>Test</button></a>
         </form>
 </div>
+
+<img src='static/graph.png'>
 
 
 {% endblock %}

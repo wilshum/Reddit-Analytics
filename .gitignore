@@ -1,4 +1,4 @@
-credential.py
+credentials.py
 .idea/
-result.csv
+data.csv
 __pycache__/
