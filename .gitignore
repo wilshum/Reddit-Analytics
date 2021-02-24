@@ -2,3 +2,4 @@ credentials.py
 .idea/
 data.csv
 __pycache__/
+.vs/
