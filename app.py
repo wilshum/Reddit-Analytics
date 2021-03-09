@@ -21,11 +21,11 @@ class Todo(db.Model):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    submissions = topSubmissions()
+    return render_template('index.html', submissions = submissions["sublist"])
 
 @app.route("/scrapReddit")
 def scrapReddit():
-
     sname = 'wallstreetbets'
     scrap_func(sname)
     return "Scraping Reddit..."
@@ -37,7 +37,6 @@ def graphData():
 
 @app.route("/topSubmissions")
 def topSubmissions():
-
     sname = 'wallstreetbets'
     data = top_submission(sname)
     return data

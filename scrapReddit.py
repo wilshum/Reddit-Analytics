@@ -5,6 +5,7 @@ import praw
 from praw.models import MoreComments
 import pandas as pd
 import datetime as dt
+import json
 
 print(reddit.read_only)  # confirmation
 
@@ -51,12 +52,14 @@ def top_submission(sname):
     #     print(submission.title)
 
     topics_dict = {
-        "submissions": [], \
-        "upvotes": []}
+        "sublist": []}
 
     for submission in top_submissions:
-        topics_dict["submissions"].append(submission.title)
-        topics_dict["upvotes"].append(submission.score)
+        obj_dict = {
+            "title": submission.title,
+            "upvotes": submission.score}
+
+        topics_dict["sublist"].append(obj_dict)
 
 
     for submission in top_submissions:

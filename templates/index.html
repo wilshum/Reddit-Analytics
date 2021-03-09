@@ -46,6 +46,8 @@
   </fieldset>
 </form>
 
+
+
 <script type=text/javascript>
         $(function() {
           $('a#graphData').on('click', function(e) {
@@ -60,6 +62,7 @@
 </script>
 
 
+
 <div class='container'>
     <h2>GraphData</h2>
         <form>
@@ -69,5 +72,41 @@
 
 <img src='static/graph.png'>
 
+
+<div class='content'>
+  <h1>Top Submissions</h1>
+  <table>
+    <tr>
+        <th>Upvotes</th>
+        <th>Title</th>
+    </tr>
+    {% for submission in submissions %}
+      <tr>
+          <td>{{ submission.upvotes }}</td>
+          <td>{{ submission.title }}</td>
+          <td>
+
+          </td>
+
+      </tr>
+    {% endfor %}
+  </table>
+
+  <a href=# id=topSubmissions><button class='btn btn-default'>generate</button></a>
+
+</div>
+
+<script type=text/javascript>
+  $(function() {
+    $('a#topSubmissions').on('click', function(e) {
+      e.preventDefault()
+      $.getJSON('/topSubmissions',
+          function(data) {
+              //do nothing
+      });
+      return false;
+    });
+  });
+</script>
 
 {% endblock %}
