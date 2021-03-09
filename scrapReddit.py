@@ -9,13 +9,12 @@ import datetime as dt
 print(reddit.read_only)  # confirmation
 
 
-def scrap_func():
-    subreddit = reddit.subreddit('FunTestsWithFriends')
-    # print(subreddit.display_name)
-    print("scrapped Reddit")
+def scrap_func(sname):
+
+    subreddit = reddit.subreddit(sname)
 
     hot_subreddit = subreddit.top(limit=1)
-
+    
     topics_dict = {
         "likes": [], \
         "popular": []}
@@ -42,31 +41,35 @@ def scrap_func():
     topics_data.to_csv('data.csv', index=False)
 
 
-def top_submission():
+def top_submission(sname):
 
-    subreddit = reddit.subreddit('FunTestsWithFriends')
+    subreddit = reddit.subreddit(sname)
     
-    hot_subreddit = subreddit.top(limit=1)
+    top_submissions = subreddit.top(limit=5)
 
-    print(hot_subreddit)
+    # for submission in top_posts:
+    #     print(submission.title)
 
-    for submission in hot_subreddit:
+    topics_dict = {
+        "submissions": [], \
+        "upvotes": []}
+
+    for submission in top_submissions:
+        topics_dict["submissions"].append(submission.title)
+        topics_dict["upvotes"].append(submission.score)
+
+
+    for submission in top_submissions:
         top_level_comments = list(submission.comments)
 
-        topics_dict = {
-            "likes": [], \
-            "popular": []}
-
-        for comment in top_level_comments:
-            print(comment)
+        # for comment in top_level_comments:
+        #     print(comment)
         
-        for i in range(0,min(len(top_level_comments), 5)):
-            if isinstance(top_level_comments[i], MoreComments):
-                continue
-            topics_dict["popular"].append(top_level_comments[i].body)
-            topics_dict["likes"].append(top_level_comments[i].score)
-        # all_comments = submission.comments.list()
-        # for comment in all_comments:
-        #     topics_dict["all"].append(comment.body)
+        # for i in range(0,min(len(top_level_comments), 5)):
+        #     if isinstance(top_level_comments[i], MoreComments):
+        #         continue
+        #     topics_dict["popular"].append(top_level_comments[i].body)
+        #     topics_dict["likes"].append(top_level_comments[i].score)
 
-        return topics_dict
+
+    return topics_dict
